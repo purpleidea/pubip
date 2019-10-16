@@ -23,6 +23,7 @@ var APIURIs = []string{
 	"http://wgetip.com",
 	"http://ip.appspot.com",
 	"http://ip.tyk.nu",
+	"http://checkip.dyndns.org/",
 	"https://shtuff.it/myip/short",
 }
 

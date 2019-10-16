@@ -15,6 +15,11 @@ import (
 	"github.com/jpillora/backoff"
 )
 
+const (
+	// DynDnsPrefix is the prefix used by the checkip.dyndns.org service.
+	DynDnsPrefix = "Current IP Address: "
+)
+
 // GetIPBy queries an API to retrieve a `net.IP` of this machine's public IP
 // address.
 //
@@ -66,6 +71,7 @@ func GetIPBy(dest string) (net.IP, error) {
 		}
 
 		tb := strings.TrimSpace(string(body))
+		tb = strings.TrimPrefix(tb, DynDnsPrefix) // trim the header if exists
 		ip := net.ParseIP(tb)
 		if ip == nil {
 			return nil, errors.New("IP address not valid: " + tb)
